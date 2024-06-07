@@ -101,4 +101,196 @@ defmodule Lb.LeaderBoard do
   def change_player(%Player{} = player, attrs \\ %{}) do
     Player.changeset(player, attrs)
   end
+
+  alias Lb.LeaderBoard.Game
+
+  @doc """
+  Returns the list of games.
+
+  ## Examples
+
+      iex> list_games()
+      [%Game{}, ...]
+
+  """
+  def list_games do
+    Repo.all(Game)
+  end
+
+  @doc """
+  Gets a single game.
+
+  Raises `Ecto.NoResultsError` if the Game does not exist.
+
+  ## Examples
+
+      iex> get_game!(123)
+      %Game{}
+
+      iex> get_game!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_game!(id), do: Repo.get!(Game, id)
+
+  @doc """
+  Creates a game.
+
+  ## Examples
+
+      iex> create_game(%{field: value})
+      {:ok, %Game{}}
+
+      iex> create_game(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_game(attrs \\ %{}) do
+    %Game{}
+    |> Game.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a game.
+
+  ## Examples
+
+      iex> update_game(game, %{field: new_value})
+      {:ok, %Game{}}
+
+      iex> update_game(game, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_game(%Game{} = game, attrs) do
+    game
+    |> Game.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a game.
+
+  ## Examples
+
+      iex> delete_game(game)
+      {:ok, %Game{}}
+
+      iex> delete_game(game)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_game(%Game{} = game) do
+    Repo.delete(game)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking game changes.
+
+  ## Examples
+
+      iex> change_game(game)
+      %Ecto.Changeset{data: %Game{}}
+
+  """
+  def change_game(%Game{} = game, attrs \\ %{}) do
+    Game.changeset(game, attrs)
+  end
+
+  alias Lb.LeaderBoard.Score
+
+  @doc """
+  Returns the list of scores.
+
+  ## Examples
+
+      iex> list_scores()
+      [%Score{}, ...]
+
+  """
+  def list_scores do
+    Repo.all(Score)
+  end
+
+  @doc """
+  Gets a single score.
+
+  Raises `Ecto.NoResultsError` if the Score does not exist.
+
+  ## Examples
+
+      iex> get_score!(123)
+      %Score{}
+
+      iex> get_score!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_score!(id), do: Repo.get!(Score, id)
+
+  @doc """
+  Creates a score.
+
+  ## Examples
+
+      iex> create_score(%{field: value})
+      {:ok, %Score{}}
+
+      iex> create_score(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_score(attrs \\ %{}) do
+    %Score{}
+    |> Score.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a score.
+
+  ## Examples
+
+      iex> update_score(score, %{field: new_value})
+      {:ok, %Score{}}
+
+      iex> update_score(score, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_score(%Score{} = score, attrs) do
+    score
+    |> Score.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a score.
+
+  ## Examples
+
+      iex> delete_score(score)
+      {:ok, %Score{}}
+
+      iex> delete_score(score)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_score(%Score{} = score) do
+    Repo.delete(score)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking score changes.
+
+  ## Examples
+
+      iex> change_score(score)
+      %Ecto.Changeset{data: %Score{}}
+
+  """
+  def change_score(%Score{} = score, attrs \\ %{}) do
+    Score.changeset(score, attrs)
+  end
 end

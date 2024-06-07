@@ -1,0 +1,12 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:player_id]} type="number" label="Player" />
+  <.input field={f[:game_id]} type="number" label="Game" />
+  <.input field={f[:score]} type="number" label="Score" />
+  <.input field={f[:date_game_played]} type="date" label="Date game played" />
+  <:actions>
+    <.button>Save Score</.button>
+  </:actions>
+</.simple_form>

@@ -19,6 +19,8 @@ defmodule LbWeb.Router do
 
     get "/", PageController, :home
     resources "/players", PlayerController
+    resources "/games", GameController
+    resources "/scores", ScoreController
   end
 
   # Other scopes may use custom stacks.
