@@ -37,16 +37,33 @@ defmodule Lb.LeaderBoard do
   """
   def get_player!(id), do: Repo.get!(Player, id)
 
+  def get_playername_by_id(id) when is_integer(id) do
+    from(p in Player,
+      where: p.id == ^id,
+      select: [p.first_name, p.last_name]
+    )
+    |> Repo.one()
+  end
+
   @doc """
-  Creates a player.
+  This is different than list_players because it's meant to allow me to populate an option control.  It returns id and first and last concatenated.
+  """
 
-  ## Examples
+  def get_player_list() do
+    list_players()
+    |> Enum.map(fn p -> %{"id" => p.id, "name" => "#{p.first_name} #{p.last_name}"} end)
+  end
 
-      iex> create_player(%{field: value})
-      {:ok, %Player{}}
+  @doc """
+    Creates a player.
 
-      iex> create_player(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+    ## Examples
+
+        iex> create_player(%{field: value})
+        {:ok, %Player{}}
+
+        iex> create_player(%{field: bad_value})
+        {:error, %Ecto.Changeset{}}
 
   """
   def create_player(attrs \\ %{}) do
@@ -132,6 +149,23 @@ defmodule Lb.LeaderBoard do
 
   """
   def get_game!(id), do: Repo.get!(Game, id)
+
+  def get_gamename_by_id(id) when is_integer(id) do
+    from(g in Game,
+      where: g.id == ^id,
+      select: g.name
+    )
+    |> Repo.one()
+  end
+
+  @doc """
+  This is different than list_games because it's meant to allow me to populate an option control.  It returns id and game name.
+  """
+
+  def get_game_list() do
+    list_games()
+    |> Enum.map(fn g -> %{"id" => g.id, "name" => "#{g.name}"} end)
+  end
 
   @doc """
   Creates a game.
