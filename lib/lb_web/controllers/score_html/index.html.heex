@@ -8,8 +8,10 @@
 </.header>
 
 <.table id="scores" rows={@scores} row_click={&JS.navigate(~p"/scores/#{&1}")}>
-  <:col :let={score} label="Player"><%= score.player_id %></:col>
-  <:col :let={score} label="Game"><%= score.game_id %></:col>
+  <:col :let={score} label="Player">
+    <%= Lb.LeaderBoard.get_playername_by_id(score.player_id) %>
+  </:col>
+  <:col :let={score} label="Game"><%= Lb.LeaderBoard.get_gamename_by_id(score.game_id) %></:col>
   <:col :let={score} label="Score"><%= score.score %></:col>
   <:col :let={score} label="Date game played"><%= score.date_game_played %></:col>
   <:action :let={score}>
