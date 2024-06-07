@@ -2,8 +2,20 @@
   <.error :if={@changeset.action}>
     Oops, something went wrong! Please check the errors below.
   </.error>
-  <.input field={f[:player_id]} type="number" label="Player" />
-  <.input field={f[:game_id]} type="number" label="Game" />
+  <.input
+    field={f[:player_id]}
+    type="select"
+    label="Player"
+    options={
+      Lb.LeaderBoard.get_player_list() |> Enum.map(fn player -> {player.name, player.id} end)
+    }
+  />
+  <.input
+    field={f[:game_id]}
+    type="select"
+    label="Game"
+    options={Lb.LeaderBoard.get_game_list() |> Enum.map(fn game -> {game.name, game.id} end)}
+  />
   <.input field={f[:score]} type="number" label="Score" />
   <.input field={f[:date_game_played]} type="date" label="Date game played" />
   <:actions>

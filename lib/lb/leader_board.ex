@@ -51,7 +51,7 @@ defmodule Lb.LeaderBoard do
 
   def get_player_list() do
     list_players()
-    |> Enum.map(fn p -> %{"id" => p.id, "name" => "#{p.first_name} #{p.last_name}"} end)
+    |> Enum.map(fn p -> %{id: p.id, name: "#{p.first_name} #{p.last_name}"} end)
   end
 
   @doc """
@@ -164,7 +164,7 @@ defmodule Lb.LeaderBoard do
 
   def get_game_list() do
     list_games()
-    |> Enum.map(fn g -> %{"id" => g.id, "name" => "#{g.name}"} end)
+    |> Enum.map(fn g -> %{id: g.id, name: "#{g.name}"} end)
   end
 
   @doc """
