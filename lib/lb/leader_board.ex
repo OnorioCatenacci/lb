@@ -37,12 +37,21 @@ defmodule Lb.LeaderBoard do
   """
   def get_player!(id), do: Repo.get!(Player, id)
 
+  @spec get_playername_by_id(integer) :: {:ok, String.t()} | {:error, String.t()}
   def get_playername_by_id(id) when is_integer(id) do
-    from(p in Player,
-      where: p.id == ^id,
-      select: [p.first_name, p.last_name]
-    )
-    |> Repo.one()
+    r =
+      from(p in Player,
+        where: p.id == ^id,
+        select: [p.first_name, p.last_name]
+      )
+      |> Repo.one()
+
+    if r == nil do
+      {:error, "No player found for id #{id}"}
+    else
+      [first_name, last_name] = r
+      {:ok, "#{first_name} #{last_name}"}
+    end
   end
 
   @doc """
@@ -150,12 +159,20 @@ defmodule Lb.LeaderBoard do
   """
   def get_game!(id), do: Repo.get!(Game, id)
 
+  @spec get_gamename_by_id(integer) :: {:ok, String.t()} | {:error, String.t()}
   def get_gamename_by_id(id) when is_integer(id) do
-    from(g in Game,
-      where: g.id == ^id,
-      select: g.name
-    )
-    |> Repo.one()
+    r =
+      from(g in Game,
+        where: g.id == ^id,
+        select: g.name
+      )
+      |> Repo.one()
+
+    if r == nil do
+      {:error, "No game found for id #{id}"}
+    else
+      {:ok, "#{[r]}"}
+    end
   end
 
   @doc """
