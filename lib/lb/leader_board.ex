@@ -344,4 +344,44 @@ defmodule Lb.LeaderBoard do
   def change_score(%Score{} = score, attrs \\ %{}) do
     Score.changeset(score, attrs)
   end
+
+  alias Lb.LeaderBoard.AverageScore
+
+  def get_average_scores_per_game(game_id) when is_integer(game_id) do
+    q =
+      from(s in Score,
+        join: p in Player,
+        on: s.player_id == p.id,
+        join: g in Game,
+        on: s.game_id == g.id,
+        where: g.id == ^game_id,
+        group_by: [p.id,g.id],
+        order_by: [asc: avg(s.score)],
+        select: [
+          first_name: p.first_name,
+          last_name: p.last_name,
+          game: g.name,
+          average_score: avg(s.score),
+          scores_recorded: count(s.score)
+        ]
+      )
+
+    r = Repo.all(q)
+
+    if r == [] do
+      {:error, "No scores found for game id #{game_id}"}
+    else
+      scores =
+        for record <- r,
+            do: %AverageScore{
+              first_name: record[:first_name],
+              last_name: record[:last_name],
+              game: record[:game],
+              score: record[:average_score],
+              scores_recorded: record[:scores_recorded]
+            }
+
+      {:ok, scores}
+    end
+  end
 end
