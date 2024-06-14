@@ -355,7 +355,7 @@ defmodule Lb.LeaderBoard do
         join: g in Game,
         on: s.game_id == g.id,
         where: g.id == ^game_id,
-        group_by: [p.id,g.id],
+        group_by: [p.id, g.id],
         order_by: [asc: avg(s.score)],
         select: [
           first_name: p.first_name,

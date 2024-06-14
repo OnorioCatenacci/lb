@@ -1,9 +1,45 @@
-<.table id="scoreboards" rows={@scoreboards}>
-  <:col :let={scoreboard} label="First name"><%= scoreboard.first_name %></:col>
-  <:col :let={scoreboard} label="Last name"><%= scoreboard.last_name %></:col>
-  <:col :let={scoreboard} label="Game"><%= scoreboard.game %></:col>
-  <:col :let={scoreboard} label="Average score"><%= Decimal.round(scoreboard.score, 2) %></:col>
-  <:col :let={scoreboard} label="Total Number Of Scores Recorded">
-    <%= scoreboard.scores_recorded %>
-  </:col>
-</.table>
+<div class="grid grid-cols-5 gap-x-48 justify-start">
+  <div class="col-span-2">
+    <h2>Wordle</h2>
+    <.table id="scoreboards" rows={@wordle_scoreboard}>
+      <:col :let={scoreboard} label="First name"><%= scoreboard.first_name %></:col>
+      <:col :let={scoreboard} label="Last name"><%= scoreboard.last_name %></:col>
+      <:col :let={scoreboard} label="Average score">
+        <%= Decimal.round(scoreboard.score, 2) %>
+      </:col>
+      <:col :let={scoreboard} label="Number Of Scores Recorded">
+        <%= scoreboard.scores_recorded %>
+      </:col>
+    </.table>
+  </div>
+
+  <div class="col-span-2">
+    <h2>Connections</h2>
+    <.table id="scoreboards" rows={@connections_scoreboard}>
+      <:col :let={scoreboard} label="First name"><%= scoreboard.first_name %></:col>
+      <:col :let={scoreboard} label="Last name"><%= scoreboard.last_name %></:col>
+      <:col :let={scoreboard} label="Average score">
+        <%= Decimal.round(scoreboard.score, 2) %>
+      </:col>
+      <:col :let={scoreboard} label="Number Of Scores Recorded">
+        <%= scoreboard.scores_recorded %>
+      </:col>
+    </.table>
+  </div>
+
+  <div class="col-span-1">
+    <h2>Mini Crossword</h2>
+    <.table id="scoreboards" rows={@mini_xword_scoreboard}>
+      <:col :let={scoreboard} label="First name"><%= scoreboard.first_name %></:col>
+      <:col :let={scoreboard} label="Last name"><%= scoreboard.last_name %></:col>
+      <:col :let={scoreboard} label="Average score">
+        <%= Decimal.round(scoreboard.score, 2) %>
+      </:col>
+      <:col :let={scoreboard} label="Number Of Scores Recorded">
+        <%= scoreboard.scores_recorded %>
+      </:col>
+    </.table>
+  </div>
+
+
+</div>
