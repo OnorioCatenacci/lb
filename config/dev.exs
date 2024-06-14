@@ -2,8 +2,10 @@ import Config
 
 # Configure your database
 config :lb, Lb.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "lb_query",
+  password: System.fetch_env!("LB_QUERY_PASSWORD"),
+  # username: "postgres",
+  # password: "postgres",
   hostname: "localhost",
   database: "lb_dev",
   stacktrace: true,
