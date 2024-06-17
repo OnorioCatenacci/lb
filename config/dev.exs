@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :lb, Lb.Repo,
-  username: "lb_query",
-  password: System.fetch_env!("LB_QUERY_PASSWORD"),
+  username: "lb_update",
+  password: System.fetch_env!("LB_UPDATE_PASSWORD"),
   # username: "postgres",
   # password: "postgres",
   hostname: "localhost",
