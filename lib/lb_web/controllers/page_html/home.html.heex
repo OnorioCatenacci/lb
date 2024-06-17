@@ -33,7 +33,7 @@
       <:col :let={scoreboard} label="First name"><%= scoreboard.first_name %></:col>
       <:col :let={scoreboard} label="Last name"><%= scoreboard.last_name %></:col>
       <:col :let={scoreboard} label="Average score">
-        <%= Decimal.round(scoreboard.score, 2) %>
+        <%= convert_number_to_timespan(Decimal.round(scoreboard.score, 2)) %>
       </:col>
       <:col :let={scoreboard} label="Number Of Scores Recorded">
         <%= scoreboard.scores_recorded %>
